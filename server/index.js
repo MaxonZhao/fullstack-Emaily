@@ -3,7 +3,8 @@ const app = express();
 
 // route handler of express
 app.get('/', (req, res) => {
-    res.send({hi: 'there'})
+    res.send({hi: 'there',
+bye: 'there'})
 });
 
 // runtime environment parameters, Heroku will dynamically allocate a port number
