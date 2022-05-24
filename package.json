@@ -2,14 +2,14 @@
   "name": "server",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "server/index.js",
   "engines": {
     "node": "17.8.1",
     "npm": "8.5.5"
   },
   "scripts": {
-    "start": "node index.js",
-    "dev": "nodemon index.js"
+    "start": "node server/index.js",
+    "dev": "server/node_modules/.bin/nodemon index.js"
   },
   "author": "",
   "license": "ISC",
