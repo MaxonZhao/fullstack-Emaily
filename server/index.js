@@ -5,6 +5,8 @@ const passport = require('passport');
 const keys = require('./config/key');
 require('./models/User');
 require('./services/passport');
+const { createProxyMiddleware } = require('http-proxy-middleware');
+
 
 mongoose.connect(keys.mongoURI);
 
@@ -21,6 +23,13 @@ app.use(
 );
 app.use(passport.initialize())
 app.use(passport.session());
+app.use(
+    '/api',
+    createProxyMiddleware({
+        target: 'http://localhost:5000',
+        changeOrigin: true,
+    })
+);
 
 require('./routes/authRoutes')(app);
 
@@ -30,5 +39,6 @@ require('./routes/authRoutes')(app);
 // runtime environment parameters, Heroku will dynamically allocate a port number
 // by setting the runtime PORT number 
 // Or set it to port 5000 instead if we are in development setting - not deploying on Heroku
+
 const PORT = process.env.PORT || 5000;
 app.listen(PORT);
